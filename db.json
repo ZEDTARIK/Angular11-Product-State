@@ -1,0 +1,25 @@
+{
+    "products": [
+        {
+            "id":1,
+            "name": "Lenovo 2019",
+            "price": 3000,
+            "selected":  true,
+            "available": true
+        },
+        {
+            "id": 2,
+            "name": "Computer 2021",
+            "price": 2514,
+            "selected": false,
+            "available": true
+        },
+        {
+            "id":3,
+            "name": "Velo",
+            "price": 120,
+            "selected": true,
+            "available": false
+        }
+    ]
+}
