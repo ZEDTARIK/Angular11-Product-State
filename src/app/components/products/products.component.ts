@@ -86,5 +86,26 @@ export class ProductsComponent implements OnInit {
     );
   }
 
+  // Search Data from Searver
+  onSearching(dataForm: any) {
+    this.products$ = this.productService.SearchProduct(dataForm.keyword)
+    .pipe(
+      map(data => (
+        {
+          dataState: DataStateEnum.LOADED,
+          data: data
+        })),
+      startWith({
+        dataState: DataStateEnum.LOADING
+      }),
+      catchError(err =>
+        of({
+          dataState: DataStateEnum.ERROR,
+          error: err
+        })
+      )
+    );
+  }
+
 
 }

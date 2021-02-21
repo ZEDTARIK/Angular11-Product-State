@@ -25,4 +25,8 @@ export class ProductService {
   getAvailableProduct(): Observable<Product[]> {
     return this.http.get<Product[]>(this.host+'/Products?available=true');
   }
+
+  SearchProduct(keyword): Observable<Product[]> {
+    return this.http.get<Product[]>(this.host+`/Products?name_like=${keyword}`);
+  }
 }

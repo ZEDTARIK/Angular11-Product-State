@@ -1,47 +1,51 @@
 <div class="container">
     <div class="row mt-2">
-        <div class="col-md-12">
+        <div class="col-md-8">
             <button type="button" class="btn btn-info btn-sm" (click)="onGetAllProducts()">All Data</button>
             <button type="button" class="btn btn-success btn-sm ml-2" (click)="onSelectedData()">Seleceted</button>
             <button type="button" class="btn btn-primary btn-sm ml-2" (click)="onAvailableData()">Available</button>
         </div>
+        <div class="col-md-4">
+            <form class="form-inline" #f="ngForm" (ngSubmit)="onSearching(f.value)">
+                <input (keyup)="onSearching(f.value)" ngModel name=keyword type="text" class="form-control"
+                    placeholder="Search...">
+            </form>
+        </div>
     </div>
     <div class="row mt-2">
         <div class="col-md-12">
-            <ng-container 
-        *ngIf="(products$ | async) as Result" 
-            [ngSwitch]="Result.dataState">
+            <ng-container *ngIf="(products$ | async) as Result" [ngSwitch]="Result.dataState">
 
-        <!-- Cas ERROR-->  
-        <ng-conrainer *ngSwitchCase="DataStateEnum.ERROR">
-            {{ Result.errorMessage}}
-        </ng-conrainer>
-        <!-- Cas LOADING-->
-        <ng-conrainer *ngSwitchCase="DataStateEnum.LOADING">
-                Loading ...
-        </ng-conrainer>
-        <!-- Cas LOADED GET DATA-->
-        <ng-conrainer *ngSwitchCase="DataStateEnum.LOADED">
-            <table class="table table-hover table-bordered">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Selected</th>
-                        <th>Available</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let p of Result.data">
-                        <td scope="row">{{p.id}}</td>
-                        <td>{{p.name}}</td>
-                        <td>{{p.selected}}</td>
-                        <td>{{p.available}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </ng-conrainer>
-    </ng-container>
+                <!-- Cas ERROR-->
+                <ng-conrainer *ngSwitchCase="DataStateEnum.ERROR">
+                    {{ Result.errorMessage}}
+                </ng-conrainer>
+                <!-- Cas LOADING-->
+                <ng-conrainer *ngSwitchCase="DataStateEnum.LOADING">
+                    Loading ...
+                </ng-conrainer>
+                <!-- Cas LOADED GET DATA-->
+                <ng-conrainer *ngSwitchCase="DataStateEnum.LOADED">
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Selected</th>
+                                <th>Available</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let p of Result.data">
+                                <td scope="row">{{p.id}}</td>
+                                <td>{{p.name}}</td>
+                                <td>{{p.selected}}</td>
+                                <td>{{p.available}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </ng-conrainer>
+            </ng-container>
         </div>
     </div>
 </div>
