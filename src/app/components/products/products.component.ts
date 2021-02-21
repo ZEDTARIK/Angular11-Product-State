@@ -114,5 +114,9 @@ export class ProductsComponent implements OnInit {
     });
   }
 
+  onDelete(product) {
+    this.productService.DeleteProduct(product)
+    .subscribe(() => this.onGetAllProducts());
+  }
 
 }

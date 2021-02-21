@@ -30,9 +30,14 @@ export class ProductService {
     return this.http.get<Product[]>(this.host+`/Products?name_like=${keyword}`);
   }
 
-  // Method Put accepet 2 params ( id , payload )
+  // Method Patch accepet 2 params ( id , payload )
   ChangeSelectedProduct(product: Product): Observable<Product> {
     product.selected = !product.selected;
-    return this.http.put<Product>(this.host+ `/Products/${product.id}`, product);
+    return this.http.patch<Product>(this.host+ `/Products/${product.id}`, product);
   }
+
+  DeleteProduct(product: Product): Observable<void> {
+    return this.http.delete<void>(this.host+ `/Products/${product.id}`);
+  }
+
 }

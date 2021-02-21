@@ -4,14 +4,14 @@
       "id": 1,
       "name": "Lenovo 2019",
       "price": 3000,
-      "selected": false,
+      "selected": true,
       "available": true
     },
     {
       "id": 2,
       "name": "Computer 2021",
       "price": 2514,
-      "selected": true,
+      "selected": false,
       "available": true
     },
     {

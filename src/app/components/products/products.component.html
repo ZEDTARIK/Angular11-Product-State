@@ -34,6 +34,7 @@
                                 <th>Selected</th>
                                 <th>Available</th>
                                 <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -43,10 +44,13 @@
                                 <td>{{p.selected}}</td>
                                 <td>{{p.available}}</td>
                                 <td>
-                                    <button (click)="onChangeSelected(p)" type="button" [ngClass]="p.selected ? 'btn-success' : 'btn-danger'" class="btn btn-sm">
+                                    <button (click)="onChangeSelected(p)" type="button" [ngClass]="p.selected ? 'btn-success' : 'btn-warning'" class="btn btn-sm">
                                         <span *ngIf="p.selected">Unselected</span>
                                         <span *ngIf="!p.selected">Selected</span>
                                     </button>
+                                </td>
+                                <td>
+                                    <button (click)="onDelete(p)" type="button" class="btn btn-sm btn-danger">Delete</button>
                                 </td>
                             </tr>
                         </tbody>
