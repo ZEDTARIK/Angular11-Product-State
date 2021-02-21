@@ -1,7 +1,9 @@
 <div class="container">
     <div class="row mt-2">
         <div class="col-md-12">
-            <button type="button" class="btn btn-info btn-sm" (click)="onGetAllProducts()">Load Data</button>
+            <button type="button" class="btn btn-info btn-sm" (click)="onGetAllProducts()">All Data</button>
+            <button type="button" class="btn btn-success btn-sm ml-2" (click)="onSelectedData()">Seleceted</button>
+            <button type="button" class="btn btn-primary btn-sm ml-2" (click)="onAvailableData()">Available</button>
         </div>
     </div>
     <div class="row mt-2">
@@ -25,7 +27,8 @@
                     <tr>
                         <th>#</th>
                         <th>Name</th>
-                        <th>Status</th>
+                        <th>Selected</th>
+                        <th>Available</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,6 +36,7 @@
                         <td scope="row">{{p.id}}</td>
                         <td>{{p.name}}</td>
                         <td>{{p.selected}}</td>
+                        <td>{{p.available}}</td>
                     </tr>
                 </tbody>
             </table>

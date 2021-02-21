@@ -15,7 +15,7 @@ export class ProductsComponent implements OnInit {
   // Create Varialbe type Product DataState
   products$: Observable<AppDataState<Product[]>> | null = null;
   
-  DataStateEnum = DataStateEnum;
+  readonly DataStateEnum = DataStateEnum;
 
   constructor(private productService: ProductService) { }
 
@@ -23,6 +23,7 @@ export class ProductsComponent implements OnInit {
     this.onGetAllProducts();
   }
 
+  // Get ALL Data From Server 
   onGetAllProducts() {
     this.products$ = this.productService.getAllProducts()
       .pipe(
@@ -41,6 +42,48 @@ export class ProductsComponent implements OnInit {
           })
         )
       );
+  }
+
+  // Get only Data Selected = true 
+  onSelectedData() {
+  this.products$ = this.productService.getSelectedProduct()
+  .pipe(
+    map(data => (
+      {
+        dataState: DataStateEnum.LOADED,
+        data: data
+      })),
+    startWith({
+      dataState: DataStateEnum.LOADING
+    }),
+    catchError(err =>
+      of({
+        dataState: DataStateEnum.ERROR,
+        error: err
+      })
+    )
+  );
+  }
+
+  // Get only Data with Available Filed = true 
+  onAvailableData() {
+    this.products$ = this.productService.getAvailableProduct()
+    .pipe(
+      map(data => (
+        {
+          dataState: DataStateEnum.LOADED,
+          data: data
+        })),
+      startWith({
+        dataState: DataStateEnum.LOADING
+      }),
+      catchError(err =>
+        of({
+          dataState: DataStateEnum.ERROR,
+          error: err
+        })
+      )
+    );
   }
 
 
