@@ -12,11 +12,15 @@ import { map, startWith, catchError } from 'rxjs/operators';
 })
 export class ProductsComponent implements OnInit {
 
+  // Create Varialbe type Product DataState
   products$: Observable<AppDataState<Product[]>> | null = null;
+  
+  DataStateEnum = DataStateEnum;
 
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
+    this.onGetAllProducts();
   }
 
   onGetAllProducts() {
@@ -24,11 +28,11 @@ export class ProductsComponent implements OnInit {
       .pipe(
         map(data => (
           {
-            dataState: DataStateEnum.LOADING,
+            dataState: DataStateEnum.LOADED,
             data: data
           })),
         startWith({
-          dataState: DataStateEnum.LOADED
+          dataState: DataStateEnum.LOADING
         }),
         catchError(err =>
           of({
