@@ -107,5 +107,12 @@ export class ProductsComponent implements OnInit {
     );
   }
 
+  onChangeSelected(product) {
+    this.productService.ChangeSelectedProduct(product)
+    .subscribe(res => {
+        product.selected = res.selected
+    });
+  }
+
 
 }

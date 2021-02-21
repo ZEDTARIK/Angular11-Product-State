@@ -29,4 +29,10 @@ export class ProductService {
   SearchProduct(keyword): Observable<Product[]> {
     return this.http.get<Product[]>(this.host+`/Products?name_like=${keyword}`);
   }
+
+  // Method Put accepet 2 params ( id , payload )
+  ChangeSelectedProduct(product: Product): Observable<Product> {
+    product.selected = !product.selected;
+    return this.http.put<Product>(this.host+ `/Products/${product.id}`, product);
+  }
 }

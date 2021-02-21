@@ -33,6 +33,7 @@
                                 <th>Name</th>
                                 <th>Selected</th>
                                 <th>Available</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,6 +42,12 @@
                                 <td>{{p.name}}</td>
                                 <td>{{p.selected}}</td>
                                 <td>{{p.available}}</td>
+                                <td>
+                                    <button (click)="onChangeSelected(p)" type="button" [ngClass]="p.selected ? 'btn-success' : 'btn-danger'" class="btn btn-sm">
+                                        <span *ngIf="p.selected">Unselected</span>
+                                        <span *ngIf="!p.selected">Selected</span>
+                                    </button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
